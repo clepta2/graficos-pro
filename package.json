@@ -1,0 +1,36 @@
+{
+  "name": "graficos-pro",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "SDK e API Oficial de Geração de Gráficos Vetoriais SVG (39 Tipos) e Cards KPI na borda Cloudflare Edge Anycast (<3ms) com animações CSS e zero dependências.",
+  "main": "graficos-pro.js",
+  "module": "graficos-pro.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "test": "node test.js",
+    "deploy": "wrangler deploy"
+  },
+  "keywords": [
+    "graficos",
+    "charts",
+    "svg-charts",
+    "data-visualization",
+    "kpi-cards",
+    "candlestick",
+    "ticker",
+    "cloudflare-worker",
+    "edge-computing",
+    "brasil",
+    "sdk"
+  ],
+  "author": "clepta2 <clepta2@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clepta2/graficos-pro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/clepta2/graficos-pro/issues"
+  },
+  "homepage": "https://github.com/clepta2/graficos-pro#readme"
+}
