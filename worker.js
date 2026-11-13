@@ -4144,7 +4144,16 @@ export async function handleRequest(request, env = {}, ctx = {}) {
   const clientIpAddr = clientIp(request);
   const isLocal = clientIpAddr === '127.0.0.1' || clientIpAddr === '::1' || clientIpAddr === 'localhost' || clientIpAddr === 'unknown';
   const authHeader = request.headers.get('Authorization') || request.headers.get('x-api-key') || '';
-  const isAuth = authHeader.length > 10;
+  const cleanKey = authHeader.replace(/^Bearer\s+/i, '').trim();
+  const isAuth = Boolean(
+    cleanKey && (
+      cleanKey.startsWith('gra_live_') || 
+      cleanKey.startsWith('gra_pro_') || 
+      cleanKey.startsWith('gra_master_') || 
+      cleanKey.startsWith('pnt_live_') ||
+      (env && (env.API_KEY === cleanKey || env.PRO_KEY === cleanKey))
+    ) && cleanKey.length >= 16
+  );
   const maxReqs = isLocal ? 10000 : (isAuth ? 3000 : 1200);
   const rl = isLocal ? { ok: true } : await rateLimit(`graficos:${clientIpAddr}`, maxReqs, 60, env);
 
