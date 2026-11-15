@@ -70,7 +70,9 @@ export const PALETAS = {
   cyberpunk: ['#00f0ff', '#ffe600', '#ff003c', '#05d9e8', '#d1f7ff', '#7122fa'],
   dracula: ['#bd93f9', '#ff79c6', '#8be9fd', '#50fa7b', '#f1fa8c', '#ffb86c'],
   nord: ['#88c0d0', '#81a1c1', '#5e81ac', '#a3be8c', '#ebcb8b', '#d08770'],
-  pastel: ['#a5b4fc', '#fbcfe8', '#fed7aa', '#bbf7d0', '#bae6fd', '#ddd6fe']
+  pastel: ['#a5b4fc', '#fbcfe8', '#fed7aa', '#bbf7d0', '#bae6fd', '#ddd6fe'],
+  contrast: ['#38bdf8', '#f59e0b', '#10b981', '#ec4899', '#8b5cf6', '#f43f5e'],
+  flex: ['#10b981', '#f59e0b', '#38bdf8', '#ef4444', '#8b5cf6', '#ec4899']
 };
 
 export const TEMAS = {
@@ -78,41 +80,41 @@ export const TEMAS = {
     bg: '#090d16',
     cardBg: 'rgba(15, 23, 42, 0.75)',
     border: 'rgba(255, 255, 255, 0.08)',
-    textPrimary: '#f8fafc',
-    textMuted: '#94a3b8',
-    grid: 'rgba(255, 255, 255, 0.06)',
+    textPrimary: '#ffffff',
+    textMuted: '#cbd5e1',
+    grid: 'rgba(255, 255, 255, 0.08)',
     tooltipBg: '#1e293b',
-    tooltipBorder: 'rgba(255, 255, 255, 0.15)'
+    tooltipBorder: 'rgba(255, 255, 255, 0.2)'
   },
   light: {
     bg: '#ffffff',
     cardBg: '#f8fafc',
     border: '#e2e8f0',
-    textPrimary: '#0f172a',
-    textMuted: '#64748b',
-    grid: '#f1f5f9',
-    tooltipBg: '#0f172a',
-    tooltipBorder: '#334155'
+    textPrimary: '#090d16',
+    textMuted: '#334155',
+    grid: '#e2e8f0',
+    tooltipBg: '#090d16',
+    tooltipBorder: '#475569'
   },
   transparent: {
     bg: 'transparent',
     cardBg: 'transparent',
     border: 'transparent',
-    textPrimary: '#f8fafc',
-    textMuted: '#94a3b8',
-    grid: 'rgba(255, 255, 255, 0.07)',
+    textPrimary: '#ffffff',
+    textMuted: '#cbd5e1',
+    grid: 'rgba(255, 255, 255, 0.08)',
     tooltipBg: '#1e293b',
-    tooltipBorder: 'rgba(255, 255, 255, 0.15)'
+    tooltipBorder: 'rgba(255, 255, 255, 0.2)'
   },
   auto: {
     bg: '#090d16',
     cardBg: 'rgba(15, 23, 42, 0.75)',
     border: 'rgba(255, 255, 255, 0.08)',
-    textPrimary: '#f8fafc',
-    textMuted: '#94a3b8',
-    grid: 'rgba(255, 255, 255, 0.06)',
+    textPrimary: '#ffffff',
+    textMuted: '#cbd5e1',
+    grid: 'rgba(255, 255, 255, 0.08)',
     tooltipBg: '#1e293b',
-    tooltipBorder: 'rgba(255, 255, 255, 0.15)',
+    tooltipBorder: 'rgba(255, 255, 255, 0.2)',
     isAuto: true
   }
 };
