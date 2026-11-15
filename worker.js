@@ -4092,6 +4092,390 @@ export function normalizeGranularOptions(params = {}, url = null) {
 // HANDLER HTTP OFICIAL DA PONTE APIS
 // ─────────────────────────────────────────────────────────────────────────────
 
+
+const HTML_GRAFICOS_STUDIO = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gr?ficos Pro ? Est?dio Vetorial Anycast (39 Tipos em SVG Puro)</title>
+  <meta name="description" content="Est?dio na nuvem para gera??o instant?nea de 39 tipos de gr?ficos em SVG vetorial puro na borda Cloudflare Anycast sem bibliotecas pesadas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="ponte-suite.css">
+  <style>
+    .chart-viewport {
+      background: var(--forest-850);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      display: grid;
+      place-items: center;
+      min-height: 340px;
+      overflow: hidden;
+    }
+    .chart-viewport svg {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- SIDEBAR DA SU?TE PONTE -->
+    <aside class="sidebar">
+      <a class="brand" href="https://ponte-marketplace.maputo2.workers.dev/#catalogo">
+        <div class="brand-mark">?</div>
+        <div class="brand-copy">
+          <strong>ponte</strong>
+          <small>API MARKET ? OZPRO</small>
+        </div>
+      </a>
+
+      <div class="nav-section-label">APIs de Design & Assets</div>
+      <nav class="primary-nav">
+        <a class="nav-link" href="https://icons-pro-api.maputo2.workers.dev/">
+          <span>??</span> <span>?cones & Assets Pro</span>
+        </a>
+        <a class="nav-link is-active" href="#">
+          <span>??</span> <span>Gr?ficos Pro (39 Tipos)</span>
+        </a>
+      </nav>
+
+      <div class="nav-section-label">Valida??o & Pagamentos</div>
+      <nav class="primary-nav">
+        <a class="nav-link" href="https://clepta2.github.io/boletovalidator-pro/">
+          <span>??</span> <span>BoletoValidator Pro</span>
+        </a>
+        <a class="nav-link" href="https://clepta2.github.io/pixvalidator-pro/">
+          <span>??</span> <span>Pix Gateway Pro</span>
+        </a>
+        <a class="nav-link" href="https://clepta2.github.io/antifraude-pro/">
+          <span>???</span> <span>Seguran?a & Antifraude</span>
+        </a>
+        <a class="nav-link" href="https://clepta2.github.io/passvalidator-pro/">
+          <span>??</span> <span>PassValidator HIBP</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="status-row">
+          <span class="status-dot"></span>
+          <span>Borda Cloudflare Anycast</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ?REA PRINCIPAL -->
+    <main class="main-area">
+      <!-- TOPBAR UNIFICADA -->
+      <header class="topbar">
+        <div class="breadcrumb">
+          <a href="https://ponte-marketplace.maputo2.workers.dev/#catalogo">Workspace</a>
+          <span>?</span>
+          <a href="https://ponte-marketplace.maputo2.workers.dev/#catalogo">Design & Assets</a>
+          <span>?</span>
+          <strong>Gr?ficos Pro Studio</strong>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="api-key-box">
+            <span>??</span>
+            <input type="text" id="inputApiKey" placeholder="gra_live_... (ou Demo)" />
+            <button class="ponte-btn-save" id="btnSalvarKey">Salvar</button>
+          </div>
+          <button class="theme-toggle-btn" id="themeToggle" title="Alternar tema">??</button>
+        </div>
+      </header>
+
+      <!-- CONTE?DO -->
+      <div class="content-wrap">
+        <!-- GUIA DID?TICO: O QUE EST? ACONTECENDO -->
+        <div class="guide-card">
+          <div class="guide-header">
+            <strong>?? O que esta ferramenta faz e como utilizar?</strong>
+            <span class="badge green">39 Modelos Vetoriais Nativos</span>
+          </div>
+          <div class="guide-steps">
+            <div class="guide-step">
+              <span class="guide-step-tag">Passo 1: Tipo & Dados</span>
+              <p>Selecione um dos 39 modelos (Barras, Linhas, Donut, Velas, Radar, etc.) e informe seus r?tulos e valores num?ricos.</p>
+            </div>
+            <div class="guide-step">
+              <span class="guide-step-tag">Passo 2: Paleta & Estilo</span>
+              <p>Escolha a paleta de cores (Mint, Fintech, Cyberpunk, etc.) e ative efeitos de gradiente, tema claro/escuro ou anima??es.</p>
+            </div>
+            <div class="guide-step">
+              <span class="guide-step-tag">Passo 3: Exportar SVG / Link</span>
+              <p>Copie o c?digo SVG vetorial puro (sem precisar de Chart.js ou canvas) ou copie a URL direta para usar em tags <code>&lt;img&gt;</code>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="badges-bar">
+          <span class="badge green">? 39 Tipos de Gr?ficos</span>
+          <span class="badge blue">? Renderiza??o SVG Nativa (<2ms)</span>
+          <span class="badge">?? Sem Bibliotecas JS Pesadas</span>
+          <span class="badge">?? 100% Responsivo & Escalon?vel</span>
+        </div>
+
+        <div class="grid-layout">
+          <!-- PAINEL ESQUERDO: CONFIGURADOR DE DADOS -->
+          <div class="card">
+            <div class="card-title">
+              <span>Configura??o do Gr?fico</span>
+              <div class="btn-row">
+                <button class="btn btn-secondary btn-sm" id="btnPresetVendas">Vendas</button>
+                <button class="btn btn-secondary btn-sm" id="btnPresetFinanceiro">Financeiro</button>
+                <button class="btn btn-secondary btn-sm" id="btnPresetMetas">Metas</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="selTipo">Tipo de Gr?fico (39 Modelos Oficiais)</label>
+              <select id="selTipo">
+                <optgroup label="B?sicos & Tend?ncia">
+                  <option value="line" selected>Linha Suave com ?rea (Line & Area)</option>
+                  <option value="bar">Barras Verticais (Bar Chart)</option>
+                  <option value="horizontal_bar">Barras Horizontais (Horizontal Bar)</option>
+                  <option value="step_line">Degraus (Step Line)</option>
+                  <option value="sparkline">Sparkline Minimalista</option>
+                </optgroup>
+                <optgroup label="Distribui??o & Propor??o">
+                  <option value="donut">Donut com Furo Central</option>
+                  <option value="pie">Pizza Cl?ssica (Pie Chart)</option>
+                  <option value="treemap">Treemap de Blocos Proporcionais</option>
+                  <option value="waffle">Grade Waffle 100%</option>
+                  <option value="funnel">Funil de Convers?o</option>
+                </optgroup>
+                <optgroup label="Metas & Indicadores">
+                  <option value="gauge">Veloc?metro / Man?metro (Gauge)</option>
+                  <option value="bullet">Bullet / Term?metro de Meta</option>
+                  <option value="radial_bar">Barras Radiais Conc?ntricas</option>
+                  <option value="kpi">Card de Indicador KPI com Varia??o</option>
+                  <option value="progress">Barra de Progresso</option>
+                </optgroup>
+                <optgroup label="Financeiros & Avan?ados">
+                  <option value="candlestick">Candlestick (Velas de Mercado)</option>
+                  <option value="ticker">Ticker de Cota??o de Moeda</option>
+                  <option value="radar">Radar / Teia de Compet?ncias</option>
+                  <option value="scatter">Dispers?o (Scatter Plot)</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="txtTitulo">T?tulo do Gr?fico</label>
+              <input type="text" id="txtTitulo" value="Tend?ncia de Crescimento Mensal" />
+            </div>
+
+            <div class="form-group">
+              <label for="txtLabels">R?tulos / Meses (separados por v?rgula)</label>
+              <input type="text" id="txtLabels" value="Jan, Fev, Mar, Abr, Mai, Jun" />
+            </div>
+
+            <div class="form-group">
+              <label for="txtValores">Valores Num?ricos (separados por v?rgula)</label>
+              <input type="text" id="txtValores" value="35, 52, 48, 65, 78, 95" />
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="form-group">
+                <label for="selPaleta">Paleta de Cores</label>
+                <select id="selPaleta">
+                  <option value="mint" selected>Ponte Mint (#a3e635)</option>
+                  <option value="emerald">Emerald Nature (#10b981)</option>
+                  <option value="fintech">Fintech Blue (#38bdf8)</option>
+                  <option value="cyberpunk">Cyberpunk Neon</option>
+                  <option value="sunset">Sunset Gradient</option>
+                  <option value="monocromatica">Monocrom?tica</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="selTema">Tema de Fundo</label>
+                <select id="selTema">
+                  <option value="dark" selected>Dark Forest (#090d16)</option>
+                  <option value="light">Light Paper (#ffffff)</option>
+                  <option value="transparent">Transparente</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="btn-row" style="margin-top: 4px;">
+              <button class="btn btn-primary" id="btnGerar" style="flex:1;">?? Renderizar Gr?fico</button>
+            </div>
+          </div>
+
+          <!-- PAINEL DIREITO: PREVIEW & EXPORTA??O -->
+          <div class="card">
+            <div class="card-title">
+              <span>Visualiza??o do SVG Vetorial</span>
+              <span class="badge green" id="badgeLatencia">< 2ms (Anycast)</span>
+            </div>
+
+            <div class="chart-viewport" id="viewportGrafico">
+              <!-- Renderizado dinamicamente via API -->
+            </div>
+
+            <div class="btn-row">
+              <button class="btn btn-primary" id="btnCopiarSvg" style="flex:1;">?? Copiar C?digo SVG</button>
+              <button class="btn btn-secondary" id="btnCopiarUrl">?? Copiar URL da Imagem</button>
+            </div>
+
+            <!-- SNIPPETS DE C?DIGO MULTILINGUAGEM -->
+            <div class="snippet-panel">
+              <div class="snippet-header">
+                <div class="snippet-tabs">
+                  <button class="snippet-tab active" data-lang="curl">cURL</button>
+                  <button class="snippet-tab" data-lang="html">HTML</button>
+                  <button class="snippet-tab" data-lang="js">Node.js</button>
+                  <button class="snippet-tab" data-lang="py">Python</button>
+                </div>
+                <button class="btn btn-secondary btn-sm" id="btnCopiarSnippet">Copiar</button>
+              </div>
+              <pre class="snippet-code"><code id="codeSnippet">curl "https://graficos-pro-api.maputo2.workers.dev/api/grafico?tipo=line&valores=35,52,48,65,78,95&labels=Jan,Fev,Mar,Abr,Mai,Jun"</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    // Gerenciador de Chave de API
+    const inputApiKey = document.getElementById('inputApiKey');
+    inputApiKey.value = localStorage.getItem('graficos_api_key') || '';
+    document.getElementById('btnSalvarKey').addEventListener('click', () => {
+      localStorage.setItem('graficos_api_key', inputApiKey.value.trim());
+      alert('Chave de API salva com sucesso no seu navegador!');
+    });
+
+    // Alternador de Tema
+    const themeBtn = document.getElementById('themeToggle');
+    const updateIcon = () => themeBtn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '??' : '??';
+    themeBtn.addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', cur);
+      localStorage.setItem('ponte.theme', cur);
+      updateIcon();
+    });
+    updateIcon();
+
+    const selTipo = document.getElementById('selTipo');
+    const txtTitulo = document.getElementById('txtTitulo');
+    const txtLabels = document.getElementById('txtLabels');
+    const txtValores = document.getElementById('txtValores');
+    const selPaleta = document.getElementById('selPaleta');
+    const selTema = document.getElementById('selTema');
+    const viewport = document.getElementById('viewportGrafico');
+    const codeSnippet = document.getElementById('codeSnippet');
+    let snippetLang = 'curl';
+
+    // Presets R?pidos
+    document.getElementById('btnPresetVendas').addEventListener('click', () => {
+      selTipo.value = 'line';
+      txtTitulo.value = 'Faturamento Mensal (R$ Milhares)';
+      txtLabels.value = 'Jan, Fev, Mar, Abr, Mai, Jun';
+      txtValores.value = '42, 58, 64, 71, 85, 110';
+      selPaleta.value = 'mint';
+      renderizarGrafico();
+    });
+
+    document.getElementById('btnPresetFinanceiro').addEventListener('click', () => {
+      selTipo.value = 'donut';
+      txtTitulo.value = 'Distribui??o de Custos Operacionais';
+      txtLabels.value = 'Infra, Folha, Marketing, Impostos, P&D';
+      txtValores.value = '25, 40, 15, 12, 8';
+      selPaleta.value = 'fintech';
+      renderizarGrafico();
+    });
+
+    document.getElementById('btnPresetMetas').addEventListener('click', () => {
+      selTipo.value = 'gauge';
+      txtTitulo.value = 'Atingimento da Meta Q4';
+      txtLabels.value = 'Meta';
+      txtValores.value = '84';
+      selPaleta.value = 'emerald';
+      renderizarGrafico();
+    });
+
+    document.getElementById('btnGerar').addEventListener('click', renderizarGrafico);
+
+    function montarUrl() {
+      const tipo = selTipo.value;
+      const tit = encodeURIComponent(txtTitulo.value.trim());
+      const lbl = encodeURIComponent(txtLabels.value.trim());
+      const val = encodeURIComponent(txtValores.value.trim());
+      const paleta = selPaleta.value;
+      const tema = selTema.value;
+
+      return \`https://graficos-pro-api.maputo2.workers.dev/api/grafico?tipo=\${tipo}&valores=\${val}&labels=\${lbl}&titulo=\${tit}&paleta=\${paleta}&tema=\${tema}\`;
+    }
+
+    async function renderizarGrafico() {
+      const url = montarUrl();
+      viewport.innerHTML = \`<div style="color:var(--muted);font-size:12px;">? Renderizando na borda Anycast...</div>\`;
+
+      try {
+        const resp = await fetch(url);
+        const svgText = await resp.text();
+        viewport.innerHTML = svgText;
+      } catch (err) {
+        viewport.innerHTML = \`<img src="\${url}" style="max-width:100%;height:auto;" />\`;
+      }
+
+      atualizarSnippet();
+    }
+
+    function atualizarSnippet() {
+      const url = montarUrl();
+      if (snippetLang === 'curl') {
+        codeSnippet.textContent = \`curl "\${url}"\`;
+      } else if (snippetLang === 'html') {
+        codeSnippet.textContent = \`<img src="\${url}" alt="\${txtTitulo.value}" />\`;
+      } else if (snippetLang === 'js') {
+        codeSnippet.textContent = \`const res = await fetch("\${url}");\\nconst svg = await res.text();\`;
+      } else if (snippetLang === 'py') {
+        codeSnippet.textContent = \`import requests\\nres = requests.get("\${url}")\\nsvg_content = res.text\`;
+      }
+    }
+
+    document.querySelectorAll('.snippet-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.snippet-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        snippetLang = btn.dataset.lang;
+        atualizarSnippet();
+      });
+    });
+
+    document.getElementById('btnCopiarSvg').addEventListener('click', () => {
+      const svg = viewport.innerHTML;
+      navigator.clipboard.writeText(svg);
+      alert('C?digo SVG vetorial copiado para a ?rea de transfer?ncia!');
+    });
+
+    document.getElementById('btnCopiarUrl').addEventListener('click', () => {
+      navigator.clipboard.writeText(montarUrl());
+      alert('URL oficial da imagem vetorial copiada!');
+    });
+
+    document.getElementById('btnCopiarSnippet').addEventListener('click', () => {
+      navigator.clipboard.writeText(codeSnippet.textContent);
+      alert('Snippet copiado!');
+    });
+
+    // Renderiza gr?fico inicial
+    renderizarGrafico();
+  </script>
+</body>
+</html>
+`;
+
 export async function handleRequest(request, env = {}, ctx = {}) {
   const url = new URL(request.url);
 
@@ -4104,6 +4488,18 @@ export async function handleRequest(request, env = {}, ctx = {}) {
 
   if (request.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: CORS_HEADERS });
+  }
+
+  // Se for navegador acessando a raiz sem par?metros espec?ficos, serve o Est?dio Visual
+  const acceptsHtml = (request.headers.get('Accept') || '').includes('text/html');
+  const hasSpecificChart = url.searchParams.has('tipo') || url.searchParams.has('valores') || url.searchParams.has('chart') || url.searchParams.has('prompt');
+  const pathClean = url.pathname.toLowerCase().replace(/\/$/, '') || '/';
+
+  if ((pathClean === '/' || pathClean === '/demo' || pathClean === '/estudio' || pathClean === '/index.html') && acceptsHtml && !hasSpecificChart) {
+    return new Response(HTML_GRAFICOS_STUDIO, {
+      status: 200,
+      headers: { 'Content-Type': 'text/html; charset=utf-8', ...CORS_HEADERS }
+    });
   }
 
   // Descoberta do Catálogo de Gráficos (/api/grafico/tipos ou ?catalogo=true)
