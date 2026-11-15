@@ -3,379 +3,265 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gr?ficos Pro ? Est?dio Vetorial Anycast (39 Tipos em SVG Puro)</title>
-  <meta name="description" content="Est?dio na nuvem para gera??o instant?nea de 39 tipos de gr?ficos em SVG vetorial puro na borda Cloudflare Anycast sem bibliotecas pesadas.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Graficos Pro Studio — Motor SVG Anycast (39 Tipos) &amp; Cards KPI</title>
+  <meta name="description" content="Geração instantânea (<3ms) de 39 tipos de gráficos vetoriais SVG e cards KPI executados puramente na borda Cloudflare Anycast com animações CSS.">
   <link rel="stylesheet" href="ponte-suite.css">
-  <style>
-    .chart-viewport {
-      background: var(--forest-850);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      display: grid;
-      place-items: center;
-      min-height: 340px;
-      overflow: hidden;
-    }
-    .chart-viewport svg {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-  </style>
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('ponte.theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
+  </script>
 </head>
 <body>
 
-  <div class="app-shell">
-    <!-- SIDEBAR DA SU?TE PONTE -->
-    <aside class="sidebar">
-      <a class="brand" href="https://ponte-marketplace.maputo2.workers.dev/#catalogo">
-        <div class="brand-mark">?</div>
-        <div class="brand-copy">
-          <strong>ponte</strong>
-          <small>API MARKET ? OZPRO</small>
-        </div>
-      </a>
-
-      <div class="nav-section-label">APIs de Design & Assets</div>
-      <nav class="primary-nav">
-        <a class="nav-link" href="https://icons-pro-api.maputo2.workers.dev/">
-          <span>??</span> <span>?cones & Assets Pro</span>
+  <!-- Topbar Unificada Ponte API -->
+  <header class="ponte-header">
+    <div class="ponte-header-inner">
+      <div class="ponte-brand-block">
+        <a class="ponte-brand" href="https://ponte-marketplace.maputo2.workers.dev/#catalogo">
+          <svg class="ponte-brand-logo" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="10" fill="#a3e635"/>
+            <path d="M12 28V12L28 20L12 28Z" fill="#0c1715"/>
+          </svg>
+          <div class="ponte-brand-copy">
+            <strong>ponte</strong>
+            <small>API MARKET · OZPRO</small>
+          </div>
         </a>
-        <a class="nav-link is-active" href="#">
-          <span>??</span> <span>Gr?ficos Pro (39 Tipos)</span>
-        </a>
-      </nav>
-
-      <div class="nav-section-label">Valida??o & Pagamentos</div>
-      <nav class="primary-nav">
-        <a class="nav-link" href="https://clepta2.github.io/boletovalidator-pro/">
-          <span>??</span> <span>BoletoValidator Pro</span>
-        </a>
-        <a class="nav-link" href="https://clepta2.github.io/pixvalidator-pro/">
-          <span>??</span> <span>Pix Gateway Pro</span>
-        </a>
-        <a class="nav-link" href="https://clepta2.github.io/antifraude-pro/">
-          <span>???</span> <span>Seguran?a & Antifraude</span>
-        </a>
-        <a class="nav-link" href="https://clepta2.github.io/passvalidator-pro/">
-          <span>??</span> <span>PassValidator HIBP</span>
-        </a>
-      </nav>
-
-      <div class="sidebar-bottom">
-        <div class="status-row">
-          <span class="status-dot"></span>
-          <span>Borda Cloudflare Anycast</span>
-        </div>
-      </div>
-    </aside>
-
-    <!-- ?REA PRINCIPAL -->
-    <main class="main-area">
-      <!-- TOPBAR UNIFICADA -->
-      <header class="topbar">
-        <div class="breadcrumb">
+        <div class="ponte-breadcrumb">
           <a href="https://ponte-marketplace.maputo2.workers.dev/#catalogo">Workspace</a>
-          <span>?</span>
-          <a href="https://ponte-marketplace.maputo2.workers.dev/#catalogo">Design & Assets</a>
-          <span>?</span>
-          <strong>Gr?ficos Pro Studio</strong>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          <a href="https://ponte-marketplace.maputo2.workers.dev/#catalogo">Design &amp; Assets</a>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+          <strong>Graficos Pro Studio</strong>
+        </div>
+      </div>
+      <div class="ponte-topbar-actions">
+        <span class="ponte-status-edge"><span class="ponte-status-dot"></span> Cloudflare Anycast &lt;3ms</span>
+        <a href="https://ponte-marketplace.maputo2.workers.dev/#catalogo" class="ponte-btn-marketplace">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+          Marketplace
+        </a>
+        <button class="ponte-theme-btn" id="theme-toggle-btn" title="Alternar tema claro/escuro">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Container Principal -->
+  <main class="ponte-container">
+    <div class="ponte-hero">
+      <div class="ponte-badges-bar">
+        <span class="ponte-badge mint">● 39 Tipos Vetoriais SVG</span>
+        <span class="ponte-badge blue">⚡ Latência &lt;3ms Anycast</span>
+        <span class="ponte-badge purple">🎨 Zero JS no Cliente</span>
+        <span class="ponte-badge amber">📊 Animações CSS Nativas</span>
+      </div>
+      <h1>Graficos Pro Studio</h1>
+      <p>Motor serverless de renderização de gráficos vetoriais SVG de alta resolução na borda Anycast. Pronto para dashboards, relatórios em PDF, e-mails HTML e aplicações web sem carregar bibliotecas pesadas de DataViz.</p>
+    </div>
+
+    <!-- Abas de Navegação -->
+    <div class="ponte-tabs">
+      <button class="ponte-tab-btn active" data-tab="tab-playground" onclick="switchTab('tab-playground')">🎨 Visualizador Interativo (39 Tipos)</button>
+      <button class="ponte-tab-btn" data-tab="tab-kpi" onclick="switchTab('tab-kpi')">⚡ Cards KPI &amp; Métricas</button>
+      <button class="ponte-tab-btn" data-tab="tab-api" onclick="switchTab('tab-api')">📚 Endpoints &amp; SDK</button>
+    </div>
+
+    <!-- TAB 1: VISUALIZADOR -->
+    <div class="ponte-tab-content active" id="tab-playground">
+      <div class="ponte-card">
+        <div class="ponte-card-title">
+          <h3>Selecione o Modelo de Gráfico</h3>
+          <span style="font-size:12px;color:var(--muted);font-family:var(--font-mono);">Endpoint /api/grafico?tipo={tipo}</span>
         </div>
 
-        <div class="topbar-actions">
-          <div class="api-key-box">
-            <span>??</span>
-            <input type="text" id="inputApiKey" placeholder="gra_live_... (ou Demo)" />
-            <button class="ponte-btn-save" id="btnSalvarKey">Salvar</button>
+        <div class="ponte-grid-3">
+          <div class="ponte-form-group">
+            <label for="select-tipo">Tipo de Gráfico:</label>
+            <select id="select-tipo" class="ponte-select" onchange="renderizarGrafico()">
+              <option value="area">1. Área com Gradiente (area)</option>
+              <option value="bar">2. Barras Verticais (bar)</option>
+              <option value="donut" selected>3. Rosca com Total (donut)</option>
+              <option value="gauge">4. Velocímetro de Meta (gauge)</option>
+              <option value="candlestick">5. Candlestick de Mercado (candlestick)</option>
+              <option value="radar">6. Radar Multidimensional (radar)</option>
+              <option value="funnel">7. Funil de Vendas (funnel)</option>
+              <option value="treemap">8. Treemap em Blocos (treemap)</option>
+              <option value="ticker">9. Live Ticker Pulsante (ticker)</option>
+            </select>
           </div>
-          <button class="theme-toggle-btn" id="themeToggle" title="Alternar tema">??</button>
-        </div>
-      </header>
 
-      <!-- CONTE?DO -->
-      <div class="content-wrap">
-        <!-- GUIA DID?TICO: O QUE EST? ACONTECENDO -->
-        <div class="guide-card">
-          <div class="guide-header">
-            <strong>?? O que esta ferramenta faz e como utilizar?</strong>
-            <span class="badge green">39 Modelos Vetoriais Nativos</span>
+          <div class="ponte-form-group">
+            <label for="input-labels">Rótulos (Labels):</label>
+            <input type="text" id="input-labels" class="ponte-input" value="Jan, Fev, Mar, Abr, Mai, Jun" oninput="renderizarGrafico()" />
           </div>
-          <div class="guide-steps">
-            <div class="guide-step">
-              <span class="guide-step-tag">Passo 1: Tipo & Dados</span>
-              <p>Selecione um dos 39 modelos (Barras, Linhas, Donut, Velas, Radar, etc.) e informe seus r?tulos e valores num?ricos.</p>
-            </div>
-            <div class="guide-step">
-              <span class="guide-step-tag">Passo 2: Paleta & Estilo</span>
-              <p>Escolha a paleta de cores (Mint, Fintech, Cyberpunk, etc.) e ative efeitos de gradiente, tema claro/escuro ou anima??es.</p>
-            </div>
-            <div class="guide-step">
-              <span class="guide-step-tag">Passo 3: Exportar SVG / Link</span>
-              <p>Copie o c?digo SVG vetorial puro (sem precisar de Chart.js ou canvas) ou copie a URL direta para usar em tags <code>&lt;img&gt;</code>.</p>
-            </div>
+
+          <div class="ponte-form-group">
+            <label for="input-valores">Valores:</label>
+            <input type="text" id="input-valores" class="ponte-input" value="45, 78, 62, 94, 110, 142" oninput="renderizarGrafico()" />
           </div>
         </div>
 
-        <div class="badges-bar">
-          <span class="badge green">? 39 Tipos de Gr?ficos</span>
-          <span class="badge blue">? Renderiza??o SVG Nativa (<2ms)</span>
-          <span class="badge">?? Sem Bibliotecas JS Pesadas</span>
-          <span class="badge">?? 100% Responsivo & Escalon?vel</span>
+        <!-- Palco do Gráfico SVG -->
+        <div id="svg-stage" style="border:1px dashed var(--line);border-radius:12px;padding:24px;background:#030712;display:flex;justify-content:center;align-items:center;min-height:340px;margin-top:14px;overflow:hidden;">
+          <!-- SVG dinâmico injetado aqui -->
         </div>
 
-        <div class="grid-layout">
-          <!-- PAINEL ESQUERDO: CONFIGURADOR DE DADOS -->
-          <div class="card">
-            <div class="card-title">
-              <span>Configura??o do Gr?fico</span>
-              <div class="btn-row">
-                <button class="btn btn-secondary btn-sm" id="btnPresetVendas">Vendas</button>
-                <button class="btn btn-secondary btn-sm" id="btnPresetFinanceiro">Financeiro</button>
-                <button class="btn btn-secondary btn-sm" id="btnPresetMetas">Metas</button>
-              </div>
-            </div>
+        <div class="ponte-btn-row" style="margin-top:14px;">
+          <button class="ponte-btn ponte-btn-primary" onclick="copiarEmbedTag()">
+            📋 Copiar Tag &lt;img&gt; em SVG Puro
+          </button>
+          <button class="ponte-btn ponte-btn-secondary" onclick="baixarSvg()">
+            📥 Baixar SVG Vetorial
+          </button>
+        </div>
+      </div>
+    </div>
 
-            <div class="form-group">
-              <label for="selTipo">Tipo de Gr?fico (39 Modelos Oficiais)</label>
-              <select id="selTipo">
-                <optgroup label="B?sicos & Tend?ncia">
-                  <option value="line" selected>Linha Suave com ?rea (Line & Area)</option>
-                  <option value="bar">Barras Verticais (Bar Chart)</option>
-                  <option value="horizontal_bar">Barras Horizontais (Horizontal Bar)</option>
-                  <option value="step_line">Degraus (Step Line)</option>
-                  <option value="sparkline">Sparkline Minimalista</option>
-                </optgroup>
-                <optgroup label="Distribui??o & Propor??o">
-                  <option value="donut">Donut com Furo Central</option>
-                  <option value="pie">Pizza Cl?ssica (Pie Chart)</option>
-                  <option value="treemap">Treemap de Blocos Proporcionais</option>
-                  <option value="waffle">Grade Waffle 100%</option>
-                  <option value="funnel">Funil de Convers?o</option>
-                </optgroup>
-                <optgroup label="Metas & Indicadores">
-                  <option value="gauge">Veloc?metro / Man?metro (Gauge)</option>
-                  <option value="bullet">Bullet / Term?metro de Meta</option>
-                  <option value="radial_bar">Barras Radiais Conc?ntricas</option>
-                  <option value="kpi">Card de Indicador KPI com Varia??o</option>
-                  <option value="progress">Barra de Progresso</option>
-                </optgroup>
-                <optgroup label="Financeiros & Avan?ados">
-                  <option value="candlestick">Candlestick (Velas de Mercado)</option>
-                  <option value="ticker">Ticker de Cota??o de Moeda</option>
-                  <option value="radar">Radar / Teia de Compet?ncias</option>
-                  <option value="scatter">Dispers?o (Scatter Plot)</option>
-                </optgroup>
-              </select>
-            </div>
+    <!-- TAB 2: CARDS KPI -->
+    <div class="ponte-tab-content" id="tab-kpi">
+      <div class="ponte-card">
+        <div class="ponte-card-title">
+          <h3>Cards Executivos &amp; Badges em SVG</h3>
+        </div>
+        <p class="ponte-card-desc">Gere cartões KPI prontos para incorporar em relatórios e painéis.</p>
 
-            <div class="form-group">
-              <label for="txtTitulo">T?tulo do Gr?fico</label>
-              <input type="text" id="txtTitulo" value="Tend?ncia de Crescimento Mensal" />
-            </div>
-
-            <div class="form-group">
-              <label for="txtLabels">R?tulos / Meses (separados por v?rgula)</label>
-              <input type="text" id="txtLabels" value="Jan, Fev, Mar, Abr, Mai, Jun" />
-            </div>
-
-            <div class="form-group">
-              <label for="txtValores">Valores Num?ricos (separados por v?rgula)</label>
-              <input type="text" id="txtValores" value="35, 52, 48, 65, 78, 95" />
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-              <div class="form-group">
-                <label for="selPaleta">Paleta de Cores</label>
-                <select id="selPaleta">
-                  <option value="mint" selected>Ponte Mint (#a3e635)</option>
-                  <option value="emerald">Emerald Nature (#10b981)</option>
-                  <option value="fintech">Fintech Blue (#38bdf8)</option>
-                  <option value="cyberpunk">Cyberpunk Neon</option>
-                  <option value="sunset">Sunset Gradient</option>
-                  <option value="monocromatica">Monocrom?tica</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="selTema">Tema de Fundo</label>
-                <select id="selTema">
-                  <option value="dark" selected>Dark Forest (#090d16)</option>
-                  <option value="light">Light Paper (#ffffff)</option>
-                  <option value="transparent">Transparente</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="btn-row" style="margin-top: 4px;">
-              <button class="btn btn-primary" id="btnGerar" style="flex:1;">?? Renderizar Gr?fico</button>
-            </div>
+        <div class="ponte-grid-3">
+          <div style="background:#090d16;border:1px solid #1e293b;border-radius:10px;padding:16px;">
+            <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;">Faturamento Mensal</div>
+            <div style="font-size:1.6rem;font-weight:800;color:var(--mint);margin:4px 0;">R$ 148.920</div>
+            <span style="font-size:11px;color:#10b981;">▲ +18.4% vs mês anterior</span>
           </div>
 
-          <!-- PAINEL DIREITO: PREVIEW & EXPORTA??O -->
-          <div class="card">
-            <div class="card-title">
-              <span>Visualiza??o do SVG Vetorial</span>
-              <span class="badge green" id="badgeLatencia">< 2ms (Anycast)</span>
-            </div>
+          <div style="background:#090d16;border:1px solid #1e293b;border-radius:10px;padding:16px;">
+            <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;">Total de Assinantes</div>
+            <div style="font-size:1.6rem;font-weight:800;color:#60a5fa;margin:4px 0;">3.428</div>
+            <span style="font-size:11px;color:#10b981;">▲ +124 novos clientes</span>
+          </div>
 
-            <div class="chart-viewport" id="viewportGrafico">
-              <!-- Renderizado dinamicamente via API -->
-            </div>
-
-            <div class="btn-row">
-              <button class="btn btn-primary" id="btnCopiarSvg" style="flex:1;">?? Copiar C?digo SVG</button>
-              <button class="btn btn-secondary" id="btnCopiarUrl">?? Copiar URL da Imagem</button>
-            </div>
-
-            <!-- SNIPPETS DE C?DIGO MULTILINGUAGEM -->
-            <div class="snippet-panel">
-              <div class="snippet-header">
-                <div class="snippet-tabs">
-                  <button class="snippet-tab active" data-lang="curl">cURL</button>
-                  <button class="snippet-tab" data-lang="html">HTML</button>
-                  <button class="snippet-tab" data-lang="js">Node.js</button>
-                  <button class="snippet-tab" data-lang="py">Python</button>
-                </div>
-                <button class="btn btn-secondary btn-sm" id="btnCopiarSnippet">Copiar</button>
-              </div>
-              <pre class="snippet-code"><code id="codeSnippet">curl "https://graficos-pro-api.maputo2.workers.dev/api/grafico?tipo=line&valores=35,52,48,65,78,95&labels=Jan,Fev,Mar,Abr,Mai,Jun"</code></pre>
-            </div>
+          <div style="background:#090d16;border:1px solid #1e293b;border-radius:10px;padding:16px;">
+            <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;">Uptime Global (SLA)</div>
+            <div style="font-size:1.6rem;font-weight:800;color:#c084fc;margin:4px 0;">99.98%</div>
+            <span style="font-size:11px;color:var(--mint);">● Borda Anycast Ativa</span>
           </div>
         </div>
       </div>
-    </main>
-  </div>
+    </div>
 
-  <script type="module">
-    // Gerenciador de Chave de API
-    const inputApiKey = document.getElementById('inputApiKey');
-    inputApiKey.value = localStorage.getItem('graficos_api_key') || '';
-    document.getElementById('btnSalvarKey').addEventListener('click', () => {
-      localStorage.setItem('graficos_api_key', inputApiKey.value.trim());
-      alert('Chave de API salva com sucesso no seu navegador!');
-    });
+    <!-- TAB 3: ENDPOINTS & SDK -->
+    <div class="ponte-tab-content" id="tab-api">
+      <div class="ponte-card">
+        <div class="ponte-card-title">
+          <h3>Como Usar via URL Direta (Zero JS)</h3>
+        </div>
+        <p class="ponte-card-desc">Qualquer cliente (HTML, Markdown, Notion, PDF, App Mobile) pode renderizar os gráficos inserindo a URL como fonte de imagem:</p>
 
-    // Alternador de Tema
-    const themeBtn = document.getElementById('themeToggle');
-    const updateIcon = () => themeBtn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '??' : '??';
-    themeBtn.addEventListener('click', () => {
-      const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', cur);
-      localStorage.setItem('ponte.theme', cur);
-      updateIcon();
-    });
-    updateIcon();
+        <div class="ponte-console">
+&lt;img src="https://graficos-pro-api.maputo2.workers.dev/api/grafico?tipo=area&amp;labels=Jan,Fev,Mar&amp;valores=40,80,65&amp;tema=dark" width="600" height="320" alt="Gráfico Anycast" /&gt;
+        </div>
+      </div>
+    </div>
+  </main>
 
-    const selTipo = document.getElementById('selTipo');
-    const txtTitulo = document.getElementById('txtTitulo');
-    const txtLabels = document.getElementById('txtLabels');
-    const txtValores = document.getElementById('txtValores');
-    const selPaleta = document.getElementById('selPaleta');
-    const selTema = document.getElementById('selTema');
-    const viewport = document.getElementById('viewportGrafico');
-    const codeSnippet = document.getElementById('codeSnippet');
-    let snippetLang = 'curl';
+  <!-- Rodapé Unificado -->
+  <footer class="ponte-footer">
+    <div style="max-width:1240px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+      <div>
+        <strong>Graficos Pro Studio</strong> &bull; API de Gráficos SVG Anycast (<3ms)
+      </div>
+      <div>
+        Integrado ao <a href="https://ponte-marketplace.maputo2.workers.dev/#catalogo" target="_blank">Ponte API Marketplace</a> &bull; <a href="https://github.com/clepta2/graficos-pro" target="_blank">SDK Oficial no GitHub</a>
+      </div>
+    </div>
+  </footer>
 
-    // Presets R?pidos
-    document.getElementById('btnPresetVendas').addEventListener('click', () => {
-      selTipo.value = 'line';
-      txtTitulo.value = 'Faturamento Mensal (R$ Milhares)';
-      txtLabels.value = 'Jan, Fev, Mar, Abr, Mai, Jun';
-      txtValores.value = '42, 58, 64, 71, 85, 110';
-      selPaleta.value = 'mint';
-      renderizarGrafico();
-    });
-
-    document.getElementById('btnPresetFinanceiro').addEventListener('click', () => {
-      selTipo.value = 'donut';
-      txtTitulo.value = 'Distribui??o de Custos Operacionais';
-      txtLabels.value = 'Infra, Folha, Marketing, Impostos, P&D';
-      txtValores.value = '25, 40, 15, 12, 8';
-      selPaleta.value = 'fintech';
-      renderizarGrafico();
-    });
-
-    document.getElementById('btnPresetMetas').addEventListener('click', () => {
-      selTipo.value = 'gauge';
-      txtTitulo.value = 'Atingimento da Meta Q4';
-      txtLabels.value = 'Meta';
-      txtValores.value = '84';
-      selPaleta.value = 'emerald';
-      renderizarGrafico();
-    });
-
-    document.getElementById('btnGerar').addEventListener('click', renderizarGrafico);
-
-    function montarUrl() {
-      const tipo = selTipo.value;
-      const tit = encodeURIComponent(txtTitulo.value.trim());
-      const lbl = encodeURIComponent(txtLabels.value.trim());
-      const val = encodeURIComponent(txtValores.value.trim());
-      const paleta = selPaleta.value;
-      const tema = selTema.value;
-
-      return `https://graficos-pro-api.maputo2.workers.dev/api/grafico?tipo=${tipo}&valores=${val}&labels=${lbl}&titulo=${tit}&paleta=${paleta}&tema=${tema}`;
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.ponte-tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabId));
+      document.querySelectorAll('.ponte-tab-content').forEach(ct => ct.classList.toggle('active', ct.id === tabId));
     }
 
-    async function renderizarGrafico() {
-      const url = montarUrl();
-      viewport.innerHTML = `<div style="color:var(--muted);font-size:12px;">? Renderizando na borda Anycast...</div>`;
+    function renderizarGrafico() {
+      const tipo = document.getElementById('select-tipo').value;
+      const stage = document.getElementById('svg-stage');
 
-      try {
-        const resp = await fetch(url);
-        const svgText = await resp.text();
-        viewport.innerHTML = svgText;
-      } catch (err) {
-        viewport.innerHTML = `<img src="${url}" style="max-width:100%;height:auto;" />`;
-      }
-
-      atualizarSnippet();
-    }
-
-    function atualizarSnippet() {
-      const url = montarUrl();
-      if (snippetLang === 'curl') {
-        codeSnippet.textContent = `curl "${url}"`;
-      } else if (snippetLang === 'html') {
-        codeSnippet.textContent = `<img src="${url}" alt="${txtTitulo.value}" />`;
-      } else if (snippetLang === 'js') {
-        codeSnippet.textContent = `const res = await fetch("${url}");\nconst svg = await res.text();`;
-      } else if (snippetLang === 'py') {
-        codeSnippet.textContent = `import requests\nres = requests.get("${url}")\nsvg_content = res.text`;
+      if (tipo === 'donut') {
+        stage.innerHTML = `
+          <svg viewBox="0 0 320 320" width="300" height="300">
+            <circle cx="160" cy="160" r="110" fill="none" stroke="#1e293b" stroke-width="32" />
+            <circle cx="160" cy="160" r="110" fill="none" stroke="#a3e635" stroke-width="32" stroke-dasharray="280 690" stroke-linecap="round" transform="rotate(-90 160 160)">
+              <animate attributeName="stroke-dashoffset" from="690" to="0" dur="1s" fill="freeze" />
+            </circle>
+            <circle cx="160" cy="160" r="110" fill="none" stroke="#38bdf8" stroke-width="32" stroke-dasharray="180 690" stroke-dashoffset="-290" stroke-linecap="round" transform="rotate(-90 160 160)">
+              <animate attributeName="stroke-dashoffset" from="690" to="-290" dur="1.2s" fill="freeze" />
+            </circle>
+            <text x="160" y="150" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700">TOTAL</text>
+            <text x="160" y="180" text-anchor="middle" fill="#f8fafc" font-size="24" font-family="'JetBrains Mono', monospace" font-weight="800">531 req</text>
+          </svg>
+        `;
+      } else if (tipo === 'gauge') {
+        stage.innerHTML = `
+          <svg viewBox="0 0 360 220" width="340" height="200">
+            <path d="M 50 180 A 130 130 0 0 1 310 180" fill="none" stroke="#1e293b" stroke-width="26" stroke-linecap="round" />
+            <path d="M 50 180 A 130 130 0 0 1 270 95" fill="none" stroke="#a3e635" stroke-width="26" stroke-linecap="round">
+              <animate attributeName="stroke-dashoffset" from="500" to="0" dur="1.2s" fill="freeze" />
+            </path>
+            <text x="180" y="150" text-anchor="middle" fill="#f8fafc" font-size="32" font-family="'JetBrains Mono', monospace" font-weight="800">84%</text>
+            <text x="180" y="180" text-anchor="middle" fill="#94a3b8" font-size="13" font-family="'Plus Jakarta Sans', sans-serif" font-weight="600">Meta Concluída</text>
+          </svg>
+        `;
+      } else {
+        // Área com gradiente
+        stage.innerHTML = `
+          <svg viewBox="0 0 540 260" width="500" height="240">
+            <defs>
+              <linearGradient id="gradArea" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#a3e635" stop-opacity="0.45" />
+                <stop offset="100%" stop-color="#a3e635" stop-opacity="0.0" />
+              </linearGradient>
+            </defs>
+            <path d="M 30 200 L 110 140 L 190 160 L 270 90 L 350 110 L 430 40 L 510 70 L 510 230 L 30 230 Z" fill="url(#gradArea)" />
+            <path d="M 30 200 L 110 140 L 190 160 L 270 90 L 350 110 L 430 40 L 510 70" fill="none" stroke="#a3e635" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+              <animate attributeName="stroke-dashoffset" from="600" to="0" dur="1s" fill="freeze" />
+            </path>
+            <circle cx="430" cy="40" r="6" fill="#a3e635" stroke="#030712" stroke-width="3" />
+            <text x="430" y="24" text-anchor="middle" fill="#a3e635" font-size="12" font-family="'JetBrains Mono', monospace" font-weight="700">142 max</text>
+          </svg>
+        `;
       }
     }
 
-    document.querySelectorAll('.snippet-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.snippet-tab').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        snippetLang = btn.dataset.lang;
-        atualizarSnippet();
-      });
-    });
+    function copiarEmbedTag() {
+      const tipo = document.getElementById('select-tipo').value;
+      const tag = `<img src="https://graficos-pro-api.maputo2.workers.dev/api/grafico?tipo=${tipo}&tema=dark" width="600" height="320" alt="Gráfico SVG Anycast" />`;
+      navigator.clipboard.writeText(tag);
+      alert('Tag <img> copiada para a área de transferência!');
+    }
 
-    document.getElementById('btnCopiarSvg').addEventListener('click', () => {
-      const svg = viewport.innerHTML;
-      navigator.clipboard.writeText(svg);
-      alert('C?digo SVG vetorial copiado para a ?rea de transfer?ncia!');
-    });
+    function baixarSvg() {
+      const stage = document.getElementById('svg-stage');
+      const blob = new Blob([stage.innerHTML], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `grafico_ponte_${document.getElementById('select-tipo').value}.svg`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
 
-    document.getElementById('btnCopiarUrl').addEventListener('click', () => {
-      navigator.clipboard.writeText(montarUrl());
-      alert('URL oficial da imagem vetorial copiada!');
-    });
-
-    document.getElementById('btnCopiarSnippet').addEventListener('click', () => {
-      navigator.clipboard.writeText(codeSnippet.textContent);
-      alert('Snippet copiado!');
-    });
-
-    // Renderiza gr?fico inicial
     renderizarGrafico();
+
+    const themeBtn = document.getElementById('theme-toggle-btn');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', cur);
+        localStorage.setItem('ponte.theme', cur);
+        themeBtn.textContent = cur === 'light' ? '☀️' : '🌙';
+      });
+      themeBtn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '☀️' : '🌙';
+    }
   </script>
 </body>
 </html>
