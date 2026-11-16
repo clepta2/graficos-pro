@@ -58,21 +58,57 @@ export function escapeXml(unsafe) {
     .replace(/'/g, '&#39;');
 }
 
+/**
+ * Calcula a cor ideal do texto (escuro ou claro) de acordo com o contraste WCAG 2.1 (Luminância Relativa)
+ */
+export function getContrastTextColor(hexBg, darkColor = '#090d16', lightColor = '#ffffff') {
+  if (!hexBg) return lightColor;
+  let clean = String(hexBg).trim().replace('#', '');
+  if (clean.startsWith('rgb')) {
+    const parts = clean.match(/\d+/g);
+    if (parts && parts.length >= 3) {
+      const r = Number(parts[0]) / 255;
+      const g = Number(parts[1]) / 255;
+      const b = Number(parts[2]) / 255;
+      const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+      return lum > 0.52 ? darkColor : lightColor;
+    }
+  }
+  if (clean.length === 3) clean = clean.split('').map(c => c + c).join('');
+  if (clean.length < 6) return lightColor;
+  const r = parseInt(clean.substring(0, 2), 16) / 255;
+  const g = parseInt(clean.substring(2, 4), 16) / 255;
+  const b = parseInt(clean.substring(4, 6), 16) / 255;
+  if (isNaN(r) || isNaN(g) || isNaN(b)) return lightColor;
+  const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  return lum > 0.52 ? darkColor : lightColor;
+}
+
+/**
+ * Gera contorno protetor (Text-Halo) para garantir legibilidade 100% sobre qualquer elemento ou grade
+ */
+export function getTextHaloStyle(textColor, widthPx = '2.5px') {
+  const isLight = textColor === '#ffffff' || textColor === '#f8fafc' || textColor === '#f1f5f9' || textColor === '#cbd5e1';
+  const strokeColor = isLight ? 'rgba(9, 13, 22, 0.75)' : 'rgba(255, 255, 255, 0.85)';
+  return `paint-order:stroke fill;stroke:${strokeColor};stroke-width:${widthPx};stroke-linejoin:round;`;
+}
+
 export const PALETAS = {
-  emerald: ['#10b981', '#34d399', '#059669', '#6ee7b7', '#047857', '#a7f3d0'],
-  ocean: ['#38bdf8', '#0ea5e9', '#6366f1', '#818cf8', '#0284c7', '#93c5fd'],
-  sunset: ['#f59e0b', '#ec4899', '#f97316', '#ef4444', '#fb923c', '#f43f5e'],
-  violet: ['#a855f7', '#c084fc', '#8b5cf6', '#7c3aed', '#d8b4fe', '#6366f1'],
+  emerald: ['#10b981', '#059669', '#34d399', '#047857', '#6ee7b7', '#065f46'],
+  ocean: ['#0ea5e9', '#3b82f6', '#0284c7', '#6366f1', '#38bdf8', '#1d4ed8'],
+  sunset: ['#f59e0b', '#f97316', '#ef4444', '#ec4899', '#d97706', '#be123c'],
+  violet: ['#8b5cf6', '#a855f7', '#6366f1', '#c084fc', '#7c3aed', '#4f46e5'],
   neon: ['#06b6d4', '#ec4899', '#eab308', '#10b981', '#8b5cf6', '#3b82f6'],
-  corporate: ['#2563eb', '#1d4ed8', '#3b82f6', '#60a5fa', '#1e40af', '#93c5fd'],
-  amber: ['#f59e0b', '#d97706', '#b45309', '#fbbf24', '#fde68a', '#78350f'],
-  rose: ['#f43f5e', '#e11d48', '#be123c', '#fb7185', '#fda4af', '#9f1239'],
+  corporate: ['#2563eb', '#0284c7', '#4f46e5', '#0891b2', '#1d4ed8', '#0369a1'],
+  amber: ['#f59e0b', '#d97706', '#ea580c', '#fbbf24', '#b45309', '#78350f'],
+  rose: ['#f43f5e', '#e11d48', '#ec4899', '#fb7185', '#be123c', '#9f1239'],
   cyberpunk: ['#00f0ff', '#ffe600', '#ff003c', '#05d9e8', '#d1f7ff', '#7122fa'],
   dracula: ['#bd93f9', '#ff79c6', '#8be9fd', '#50fa7b', '#f1fa8c', '#ffb86c'],
-  nord: ['#88c0d0', '#81a1c1', '#5e81ac', '#a3be8c', '#ebcb8b', '#d08770'],
-  pastel: ['#a5b4fc', '#fbcfe8', '#fed7aa', '#bbf7d0', '#bae6fd', '#ddd6fe'],
+  nord: ['#5e81ac', '#88c0d0', '#81a1c1', '#a3be8c', '#ebcb8b', '#d08770'],
+  pastel: ['#818cf8', '#f472b6', '#fb923c', '#4ade80', '#38bdf8', '#a78bfa'],
   contrast: ['#38bdf8', '#f59e0b', '#10b981', '#ec4899', '#8b5cf6', '#f43f5e'],
-  flex: ['#10b981', '#f59e0b', '#38bdf8', '#ef4444', '#8b5cf6', '#ec4899']
+  flex: ['#10b981', '#f59e0b', '#38bdf8', '#ef4444', '#8b5cf6', '#ec4899'],
+  accessible: ['#0072b2', '#e69f00', '#009e73', '#d55e00', '#cc79a7', '#56b4e9']
 };
 
 export const TEMAS = {
@@ -251,9 +287,9 @@ export function buildCardContainer({ width, height, t, bg, borda, raioBorda, vid
           --grid-line: #f1f5f9;
         }
         .auto-card-bg { fill: #ffffff !important; }
-        text { fill: #0f172a !important; }
-        .auto-text-muted, text[fill="#94a3b8"], text[opacity="0.75"], text[opacity="0.7"] { fill: #64748b !important; }
-        line[stroke="rgba(255, 255, 255, 0.06)"], line[stroke="rgba(255, 255, 255, 0.07)"] { stroke: #f1f5f9 !important; }
+        text:not([data-contrast="fixed"]) { fill: #0f172a !important; }
+        .auto-text-muted, text[fill="#cbd5e1"], text[fill="#94a3b8"], text[opacity="0.75"], text[opacity="0.7"] { fill: #334155 !important; }
+        line[stroke="rgba(255, 255, 255, 0.06)"], line[stroke="rgba(255, 255, 255, 0.07)"], line[stroke="rgba(255, 255, 255, 0.08)"] { stroke: #e2e8f0 !important; }
       }
     </style>
   ` : '';
@@ -733,6 +769,7 @@ export class GraficosProEngine {
 
         const labelY = v >= 0 ? yPos - 8 : yPos + bHeight + 14;
         const valTextColor = corValores || t.textPrimary;
+        const valHalo = getTextHaloStyle(valTextColor, '2px');
 
         svgBars += `
           <g class="bar-item">
@@ -743,7 +780,7 @@ export class GraficosProEngine {
               </linearGradient>
             </defs>
             <rect x="${xPos}" y="${yPos}" width="${barW}" height="${bHeight}" rx="${cornerR}" fill="url(#barGrad${idx})" class="bar-rect" />
-            ${mostrarValores ? `<text x="${xPos + barW / 2}" y="${labelY}" fill="${valTextColor}" font-size="10.5" font-weight="700" text-anchor="middle" opacity="0.95">${formatarNumero(v, { compacto, moeda, prefixo, sufixo, casasDecimais })}</text>` : ''}
+            ${mostrarValores ? `<text x="${xPos + barW / 2}" y="${labelY}" fill="${valTextColor}" font-size="11" font-weight="800" text-anchor="middle" data-contrast="fixed" style="${valHalo}">${formatarNumero(v, { compacto, moeda, prefixo, sufixo, casasDecimais })}</text>` : ''}
             <title>${escapeXml(lbl)}: ${vFmt}</title>
           </g>
         `;
@@ -951,10 +988,12 @@ export class GraficosProEngine {
       let svgDots = '';
       if (pontos) {
         sPoints.forEach((p) => {
+          const pointTextFill = corValores || t.textPrimary;
+          const pointHalo = getTextHaloStyle(pointTextFill, '2px');
           svgDots += `
             <g class="dot-item">
               <circle cx="${p.x}" cy="${p.y}" r="${dotR}" fill="${s.cor}" stroke="${t.bg}" stroke-width="2.5" class="chart-dot" />
-              ${mostrarValores ? `<text x="${p.x}" y="${p.y - dotR - 4}" fill="${corValores || t.textPrimary}" font-size="10" font-weight="700" text-anchor="middle">${formatarNumero(p.v, { compacto, moeda, prefixo, sufixo, casasDecimais })}</text>` : ''}
+              ${mostrarValores ? `<text x="${p.x}" y="${p.y - dotR - 4}" fill="${pointTextFill}" font-size="10.5" font-weight="800" text-anchor="middle" data-contrast="fixed" style="${pointHalo}">${formatarNumero(p.v, { compacto, moeda, prefixo, sufixo, casasDecimais })}</text>` : ''}
               <title>${escapeXml(s.nome)} - ${escapeXml(p.lbl)}: ${formatarNumero(p.v, { moeda, prefixo, sufixo, casasDecimais })}</title>
             </g>
           `;
@@ -1749,11 +1788,13 @@ export class GraficosProEngine {
         const x = padding.left + colIdx * (cellW + 6);
         const val = (matriz[rowIdx] && matriz[rowIdx][colIdx] !== undefined) ? matriz[rowIdx][colIdx] : 0;
         const opacity = Math.max(0.12, Math.min(1.0, val / maxVal));
+        const cellTextFill = opacity > 0.45 ? getContrastTextColor(baseColor) : t.textPrimary;
+        const cellHalo = getTextHaloStyle(cellTextFill, '2px');
 
         svgCells += `
           <g class="heat-cell">
             <rect x="${x}" y="${y}" width="${cellW}" height="${cellH}" rx="5" fill="${baseColor}" opacity="${opacity.toFixed(2)}" />
-            <text x="${x + cellW / 2}" y="${y + cellH / 2 + 4}" fill="${opacity > 0.55 ? '#040711' : '#ffffff'}" font-size="10.5" font-weight="800" text-anchor="middle">${val}</text>
+            <text x="${x + cellW / 2}" y="${y + cellH / 2 + 4}" fill="${cellTextFill}" font-size="10.5" font-weight="900" text-anchor="middle" data-contrast="fixed" style="${cellHalo}">${val}</text>
             <title>${escapeXml(d)} • ${escapeXml(h)}: ${val} registros</title>
           </g>
         `;
@@ -1908,11 +1949,13 @@ export class GraficosProEngine {
     let svgBoxes = '';
     boxes.forEach(b => {
       const pct = ((b.val / total) * 100).toFixed(1);
+      const textFill = getContrastTextColor(b.cor);
+      const textHalo = getTextHaloStyle(textFill, '2.5px');
       svgBoxes += `
         <g class="treemap-box">
-          <rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="8" fill="${b.cor}" opacity="0.88" stroke="${t.bg}" stroke-width="2" />
-          <text x="${b.x + 12}" y="${b.y + 24}" fill="#ffffff" font-size="13" font-weight="800">${escapeXml(b.label)}</text>
-          <text x="${b.x + 12}" y="${b.y + 42}" fill="rgba(255,255,255,0.85)" font-size="11.5" font-weight="600">${formatarNumero(b.val, { moeda, compacto: true })} (${pct}%)</text>
+          <rect x="${b.x}" y="${b.y}" width="${b.w}" height="${b.h}" rx="8" fill="${b.cor}" opacity="0.92" stroke="${t.bg}" stroke-width="2" />
+          <text x="${b.x + 12}" y="${b.y + 24}" fill="${textFill}" font-size="13" font-weight="900" data-contrast="fixed" style="${textHalo}">${escapeXml(b.label)}</text>
+          <text x="${b.x + 12}" y="${b.y + 42}" fill="${textFill}" font-size="11.5" font-weight="800" data-contrast="fixed" style="${textHalo}">${formatarNumero(b.val, { moeda, compacto: true })} (${pct}%)</text>
         </g>
       `;
     });
@@ -2031,12 +2074,14 @@ export class GraficosProEngine {
       const w = (v / maxVal) * (chartW * 0.44);
       const cor = colors[idx % colors.length];
       const lbl = labels[idx] || `Faixa ${idx + 1}`;
+      const textFill = getContrastTextColor(cor);
+      const haloStyle = getTextHaloStyle(textFill, '2px');
 
       svgBars += `
         <g>
-          <rect x="${midX - w}" y="${y}" width="${w}" height="${rowH}" rx="4" fill="${cor}" opacity="0.9" />
-          <rect x="${midX}" y="${y}" width="${w}" height="${rowH}" rx="4" fill="${cor}" opacity="0.9" />
-          <text x="${midX}" y="${y + rowH / 2 + 4}" fill="#ffffff" font-size="11" font-weight="800" text-anchor="middle" style="text-shadow:0 1px 4px rgba(0,0,0,0.8)">${escapeXml(lbl)} (${v})</text>
+          <rect x="${midX - w}" y="${y}" width="${w}" height="${rowH}" rx="4" fill="${cor}" opacity="0.92" />
+          <rect x="${midX}" y="${y}" width="${w}" height="${rowH}" rx="4" fill="${cor}" opacity="0.92" />
+          <text x="${midX}" y="${y + rowH / 2 + 4}" fill="${textFill}" font-size="11.5" font-weight="900" text-anchor="middle" data-contrast="fixed" style="${haloStyle}">${escapeXml(lbl)} (${v})</text>
         </g>
       `;
     });
@@ -2206,6 +2251,7 @@ export class GraficosProEngine {
     const cellSize = 17;
     const gap = 4;
 
+    const emptyCellFill = (t && t.grid) ? t.grid : 'rgba(255,255,255,0.08)';
     let svgCells = '';
     for (let i = 0; i < 100; i++) {
       const row = Math.floor(i / 10);
@@ -2213,7 +2259,7 @@ export class GraficosProEngine {
       const x = startX + col * (cellSize + gap);
       const y = startY + (9 - row) * (cellSize + gap); // bottom to top
       const isFilled = i < pct;
-      const fill = isFilled ? activeColor : 'rgba(255,255,255,0.06)';
+      const fill = isFilled ? activeColor : emptyCellFill;
 
       svgCells += `
         <rect x="${x}" y="${y}" width="${cellSize}" height="${cellSize}" rx="3" fill="${fill}" />
