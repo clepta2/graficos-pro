@@ -1,4 +1,4 @@
-import worker, { GraficosProEngine, PALETAS, TEMAS } from './worker.js';
+import worker, { GraficosProEngine, PALETAS, TEMAS, getContrastTextColor, getTextHaloStyle } from './worker.js';
 
 console.log('🧪 Iniciando Bateria de Testes do GraficosPro (39 Tipos de Gráficos SVG)...\\n');
 
@@ -59,5 +59,33 @@ const resJson = await worker.fetch(reqJson);
 assert(resJson.status === 200, 'Formato JSON responde 200 OK');
 const bodyJson = await resJson.json();
 assert(bodyJson.ok === true && bodyJson.estatisticas !== undefined, 'JSON traz estatísticas matemáticas calculadas');
+
+// 9. Teste do Motor de Contraste WCAG 2.1 & Text-Halo
+console.log('\n--- Teste de Contraste e Acessibilidade Visual (WCAG 2.1 AAA) ---');
+const textOnYellow = getContrastTextColor('#ffe600');
+assert(textOnYellow === '#090d16', 'Fundo amarelo (#ffe600) recebe texto escuro (#090d16)');
+
+const textOnDarkBlue = getContrastTextColor('#1e40af');
+assert(textOnDarkBlue === '#ffffff', 'Fundo azul escuro (#1e40af) recebe texto claro (#ffffff)');
+
+const textOnWhite = getContrastTextColor('#ffffff');
+assert(textOnWhite === '#090d16', 'Fundo branco (#ffffff) recebe texto escuro (#090d16)');
+
+const haloDark = getTextHaloStyle('#ffffff');
+assert(haloDark.includes('stroke:rgba(9, 13, 22'), 'Texto branco recebe halo protetor escuro');
+
+// 10. Teste de Renderização com Treemap e Contraste Dinâmico
+const reqTreemap = new Request('https://api.test/api/grafico?tipo=treemap&valores=50,30,20&labels=A,B,C&paleta=contrast');
+const resTreemap = await worker.fetch(reqTreemap);
+assert(resTreemap.status === 200, 'Treemap responde 200 OK');
+const svgTreemap = await resTreemap.text();
+assert(svgTreemap.includes('treemap-box') && svgTreemap.includes('paint-order'), 'Treemap renderiza blocos com halo de proteção de texto');
+
+// 11. Teste de Heatmap com Contraste Dinâmico
+const reqHeat = new Request('https://api.test/api/grafico?tipo=heatmap');
+const resHeat = await worker.fetch(reqHeat);
+assert(resHeat.status === 200, 'Heatmap responde 200 OK');
+const svgHeat = await resHeat.text();
+assert(svgHeat.includes('heat-cell') && svgHeat.includes('paint-order'), 'Heatmap renderiza células com contraste calculado');
 
 console.log(`\n🎉 Todos os ${pass} testes do GraficosPro passaram com 100% de sucesso!`);

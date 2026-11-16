@@ -3434,11 +3434,11 @@ export class GraficosProEngine {
         const x = padding.left + w * (cellW + gap);
         const y = padding.top + d * (cellW + gap);
         const seed = (w * 7 + d * 13) % 100;
-        let opacity = 0.06;
+        let opacity = 0.12;
         if (seed > 80) opacity = 0.95;
-        else if (seed > 60) opacity = 0.70;
-        else if (seed > 40) opacity = 0.45;
-        else if (seed > 20) opacity = 0.22;
+        else if (seed > 60) opacity = 0.72;
+        else if (seed > 40) opacity = 0.48;
+        else if (seed > 20) opacity = 0.28;
 
         svgCells += `
           <rect x="${x}" y="${y}" width="${cellW}" height="${cellW}" rx="2" fill="${mainColor}" opacity="${opacity}" />
@@ -3447,9 +3447,9 @@ export class GraficosProEngine {
     }
 
     let svgDayLabels = `
-      <text x="${padding.left - 8}" y="${padding.top + 0 * (cellW + gap) + 8}" fill="${t.textMuted}" font-size="9" text-anchor="end">Seg</text>
-      <text x="${padding.left - 8}" y="${padding.top + 2 * (cellW + gap) + 8}" fill="${t.textMuted}" font-size="9" text-anchor="end">Qua</text>
-      <text x="${padding.left - 8}" y="${padding.top + 4 * (cellW + gap) + 8}" fill="${t.textMuted}" font-size="9" text-anchor="end">Sex</text>
+      <text x="${padding.left - 8}" y="${padding.top + 0 * (cellW + gap) + 8}" fill="${t.textMuted}" font-size="10" font-weight="600" text-anchor="end">Seg</text>
+      <text x="${padding.left - 8}" y="${padding.top + 2 * (cellW + gap) + 8}" fill="${t.textMuted}" font-size="10" font-weight="600" text-anchor="end">Qua</text>
+      <text x="${padding.left - 8}" y="${padding.top + 4 * (cellW + gap) + 8}" fill="${t.textMuted}" font-size="10" font-weight="600" text-anchor="end">Sex</text>
     `;
 
     const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
@@ -3457,17 +3457,17 @@ export class GraficosProEngine {
     meses.forEach((m, i) => {
       const col = Math.floor((i / 12) * numWeeks);
       const x = padding.left + col * (cellW + gap);
-      svgMonths += `<text x="${x}" y="${padding.top - 8}" fill="${t.textMuted}" font-size="9.5" font-weight="700">${m}</text>`;
+      svgMonths += `<text x="${x}" y="${padding.top - 8}" fill="${t.textMuted}" font-size="10.5" font-weight="700">${m}</text>`;
     });
 
     let svgLegend = `
-      <g transform="translate(${width - 150}, ${height - 14})">
-        <text x="-6" y="7" fill="${t.textMuted}" font-size="9" text-anchor="end">Menos</text>
-        <rect x="0" y="0" width="8" height="8" rx="2" fill="${mainColor}" opacity="0.1" />
-        <rect x="11" y="0" width="8" height="8" rx="2" fill="${mainColor}" opacity="0.3" />
-        <rect x="22" y="0" width="8" height="8" rx="2" fill="${mainColor}" opacity="0.6" />
+      <g transform="translate(${width - 160}, ${height - 14})">
+        <text x="-6" y="7" fill="${t.textMuted}" font-size="10" font-weight="600" text-anchor="end">Menos</text>
+        <rect x="0" y="0" width="8" height="8" rx="2" fill="${mainColor}" opacity="0.15" />
+        <rect x="11" y="0" width="8" height="8" rx="2" fill="${mainColor}" opacity="0.35" />
+        <rect x="22" y="0" width="8" height="8" rx="2" fill="${mainColor}" opacity="0.65" />
         <rect x="33" y="0" width="8" height="8" rx="2" fill="${mainColor}" opacity="0.95" />
-        <text x="48" y="7" fill="${t.textMuted}" font-size="9">Mais</text>
+        <text x="48" y="7" fill="${t.textMuted}" font-size="10" font-weight="600">Mais</text>
       </g>
     `;
 
@@ -3636,8 +3636,8 @@ export class GraficosProEngine {
         const fill = getScoreColor(p, imp);
 
         svgCells += `
-          <rect x="${x + 1}" y="${y + 1}" width="${cellW - 2}" height="${cellH - 2}" rx="3" fill="${fill}" stroke="rgba(255,255,255,0.04)" />
-          <text x="${x + cellW / 2}" y="${y + cellH / 2 + 4}" fill="${t.textMuted}" font-size="9" opacity="0.4" font-weight="700" text-anchor="middle">${p * imp}</text>
+          <rect x="${x + 1}" y="${y + 1}" width="${cellW - 2}" height="${cellH - 2}" rx="3" fill="${fill}" stroke="rgba(255,255,255,0.08)" />
+          <text x="${x + cellW / 2}" y="${y + cellH / 2 + 4}" fill="${t.textMuted}" font-size="11" font-weight="800" opacity="0.85" text-anchor="middle">${p * imp}</text>
         `;
       }
     }
@@ -3646,14 +3646,14 @@ export class GraficosProEngine {
     let svgAxisY = '';
     pLabels.forEach((lbl, idx) => {
       const y = padding.top + idx * cellH + cellH / 2 + 4;
-      svgAxisY += `<text x="${padding.left - 8}" y="${y}" fill="${t.textMuted}" font-size="9.5" font-weight="600" text-anchor="end">${escapeXml(lbl)}</text>`;
+      svgAxisY += `<text x="${padding.left - 8}" y="${y}" fill="${t.textMuted}" font-size="10.5" font-weight="700" text-anchor="end">${escapeXml(lbl)}</text>`;
     });
 
     const iLabels = ['1 Insignif.', '2 Baixo', '3 Médio', '4 Alto', '5 Crítico'];
     let svgAxisX = '';
     iLabels.forEach((lbl, idx) => {
       const x = padding.left + idx * cellW + cellW / 2;
-      svgAxisX += `<text x="${x}" y="${height - padding.bottom + 16}" fill="${t.textMuted}" font-size="9.5" font-weight="600" text-anchor="middle">${escapeXml(lbl)}</text>`;
+      svgAxisX += `<text x="${x}" y="${height - padding.bottom + 16}" fill="${t.textMuted}" font-size="10.5" font-weight="700" text-anchor="middle">${escapeXml(lbl)}</text>`;
     });
 
     let riskItems = riscos;
